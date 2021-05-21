@@ -1,0 +1,10 @@
+.header-container {
+    background-color:  #263238;
+    width: 100%;
+}
+
+.header-text {
+    color:#fff;
+    font-size: 18px;
+    vertical-align: middle;
+}
