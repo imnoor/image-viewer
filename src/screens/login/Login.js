@@ -8,8 +8,12 @@ import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
+// hardcoded the credentials to check as per requiremnt.
+const USERNAME ="test";
+const PASSWORD ="test";
+const ACCESSTOKEN = "8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784";
 class Login extends Component {
-
+    
     constructor() {
         super();
         this.state = {
@@ -17,12 +21,41 @@ class Login extends Component {
             username: "",
             loginPasswordRequired: "dispNone",
             loginPassword: "",
-            registrationSuccess: false,
+            loggedInFailed: false,
         }
     }
+    inputUsernameChangeHandler = (e) => {
+        this.setState({ username: e.target.value });
+    }
+
+    inputLoginPasswordChangeHandler = (e) => {
+        this.setState({ loginPassword: e.target.value });
+    }
+
+    loginClickHandler = () => {
+
+        this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
+        this.state.loginPassword === "" ? this.setState({ loginPasswordRequired: "dispBlock" }) : this.setState({ loginPasswordRequired: "dispNone" });
+        if (this.state.loginPassword === "" || this.state.username === "") {
+            return;
+        }
+        if (this.state.username === USERNAME && this.state.loginPassword === PASSWORD) {
+            //Login successful set the access token
+            sessionStorage.setItem("access-token", ACCESSTOKEN);
+            this.state.loggedInFailed = false;
+            //Route towards the home page.
+            this.props.history.push('/home');
+
+        } else {
+            this.setState({loggedInFailed : true});
+        }
+
+    }
+
     render() {
         return (
-            <Card >
+            <Card className="login-card" >
+                <div className="login-header">LOGIN</div>
                 <FormControl required>
                     <InputLabel htmlFor="username">Username</InputLabel>
                     <Input id="username" type="text" username={this.state.username} onChange={this.inputUsernameChangeHandler} />
@@ -39,14 +72,11 @@ class Login extends Component {
                     </FormHelperText>
                 </FormControl>
                 <br /><br />
-                {this.state.loggedIn === true &&
+                {this.state.loggedInFailed === true &&
                     <FormControl>
-                        <span className="successText">
-                            Login Successful!
-                    </span>
+                        <span className="red">Incorrect username and/or password</span>
                     </FormControl>
                 }
-                <br /><br />
                 <Button variant="contained" color="primary" onClick={this.loginClickHandler}>LOGIN</Button>
             </Card>
         )
