@@ -1,10 +1,30 @@
 .header-container {
     background-color:  #263238;
     width: 100%;
+    overflow: hidden;
 }
 
 .header-text {
+    float: left;
+    display: block;
+    color:#fff;
+    font-size: 18px;
+}
+
+.profile-icon {
+    float: right;
     color:#fff;
     font-size: 18px;
     vertical-align: middle;
+}
+
+.search-bar {
+    float: right;
+    margin-right: 16px;
+    margin-left: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    width: 300px;
+    background-color:#c0c0c0 ;
 }
