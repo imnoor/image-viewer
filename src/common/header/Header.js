@@ -5,7 +5,7 @@ import Input from '@material-ui/core/Input';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Image } from '@material-ui/icons';
+import {media,images} from '../../assets/data/Data';
 
 function ProfileMenu(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -40,7 +40,8 @@ function ProfileMenu(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleProfile}>Profile</MenuItem>
+                <MenuItem onClick={handleProfile}>My Account</MenuItem>
+                <hr/>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
         </div>
@@ -81,7 +82,7 @@ class Header extends Component {
                 <p className="header-text">Image Viewer</p>
                 { this.state.loggedIn &&
                     <div>
-                        <ProfileMenu imageSource='https://raw.githubusercontent.com/imnoor/image-viewer/master/src/assets/profile.png' profileHandler={this.profileHandler} logoutHandler={this.logoutHandler} />
+                        <ProfileMenu imageSource={media.profile_picture} profileHandler={this.profileHandler} logoutHandler={this.logoutHandler} />
                         <div className="search-bar">
                             <SearchIcon />
                             <Input id="searchbox" disableUnderline={true} placeholder="Search" type="text" username={this.state.search} onChange={this.inputSearchChangeHandler} />
