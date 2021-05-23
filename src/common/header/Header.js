@@ -5,14 +5,23 @@ import Input from '@material-ui/core/Input';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Button from '@material-ui/core/Button';
+import { Image } from '@material-ui/icons';
 
-function ProfileMenu() {
+function ProfileMenu(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
+    };
+
+    const handleProfile = () => {
+        setAnchorEl(null);
+        props.profileHandler();
+    };
+
+    const handleLogout = () => {
+        setAnchorEl(null);
+        props.logoutHandler();
     };
 
     const handleClose = () => {
@@ -21,7 +30,9 @@ function ProfileMenu() {
 
     return (
         <div className="profile-icon">
-            <DeleteIcon onClick={handleClick}/>
+            <IconButton onClick={handleClick} className="tinyLogo">
+                <img className="tinyLogo" src={props.imageSource} />
+            </IconButton>
             <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
@@ -29,8 +40,8 @@ function ProfileMenu() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleProfile}>Profile</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
         </div>
     );
@@ -53,13 +64,24 @@ class Header extends Component {
         this.props.searchHandler(e.target.value);
     }
 
+    profileHandler = () => {
+        this.props.history.push('/profile');
+    }
+
+    logoutHandler = () => {
+        sessionStorage.removeItem("access-token");
+        this.setState({loggedIn:false});
+        this.props.history.push('/');
+    }
+
+
     render() {
         return (
             <div className="header-container">
                 <p className="header-text">Image Viewer</p>
                 { this.state.loggedIn &&
                     <div>
-                        <ProfileMenu/>
+                        <ProfileMenu imageSource='https://raw.githubusercontent.com/imnoor/image-viewer/master/src/assets/profile.png' profileHandler={this.profileHandler} logoutHandler={this.logoutHandler} />
                         <div className="search-bar">
                             <SearchIcon />
                             <Input id="searchbox" disableUnderline={true} placeholder="Search" type="text" username={this.state.search} onChange={this.inputSearchChangeHandler} />

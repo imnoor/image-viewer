@@ -35,5 +35,12 @@
     margin-bottom: 10px;
     float:right;
     margin-right: 0px;
-    background-color:#c0c0c0 ;
+    background-color: #263238 ;
+}
+
+.tinyLogo {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+
 }

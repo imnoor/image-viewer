@@ -56,7 +56,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <Header />
+                <Header {...this.props}/>
                 <Card className="login-card" >
                     <div className="login-header">LOGIN</div>
                     <FormControl required>

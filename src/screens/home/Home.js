@@ -61,7 +61,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <Header searchHandler={this.searchHandler}/>
+                <Header searchHandler={this.searchHandler} {...this.props}/>
                 {this.state.someText}
             </div>
         )
