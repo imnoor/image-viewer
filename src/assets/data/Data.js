@@ -1,4 +1,4 @@
-export var media = {
+export var mediaData = {
     "data": [
         {
             "id": "17895695668004550",
@@ -20,7 +20,7 @@ export var media = {
     "profile_picture": 'https://raw.githubusercontent.com/imnoor/image-viewer/master/src/assets/profile.png'
 };
 
-export var images = {
+export var imagesData = { 
     "17895695668004550": {
         "id": "17895695668004550",
         "media_type": "IMAGE",
@@ -52,4 +52,5 @@ export var images = {
         "username": "upgrad_sd",
         "timestamp": "2020-08-31T18:10:00+0000"
     }
+    
   };

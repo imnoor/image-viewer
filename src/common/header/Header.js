@@ -5,7 +5,7 @@ import Input from '@material-ui/core/Input';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import {media,images} from '../../assets/data/Data';
+import {mediaData} from '../../assets/data/Data';
 
 function ProfileMenu(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -82,7 +82,7 @@ class Header extends Component {
                 <p className="header-text">Image Viewer</p>
                 { this.state.loggedIn &&
                     <div>
-                        <ProfileMenu imageSource={media.profile_picture} profileHandler={this.profileHandler} logoutHandler={this.logoutHandler} />
+                        <ProfileMenu imageSource={mediaData.profile_picture} profileHandler={this.profileHandler} logoutHandler={this.logoutHandler} />
                         <div className="search-bar">
                             <SearchIcon />
                             <Input id="searchbox" disableUnderline={true} placeholder="Search" type="text" username={this.state.search} onChange={this.inputSearchChangeHandler} />
