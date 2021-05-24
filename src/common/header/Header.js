@@ -5,7 +5,7 @@ import Input from '@material-ui/core/Input';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import {mediaData} from '../../assets/data/Data';
+import { mediaData } from '../../assets/data/Data';
 
 function ProfileMenu(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -41,7 +41,7 @@ function ProfileMenu(props) {
                 onClose={handleClose}
             >
                 <MenuItem onClick={handleProfile}>My Account</MenuItem>
-                <hr/>
+                <hr />
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
         </div>
@@ -71,7 +71,7 @@ class Header extends Component {
 
     logoutHandler = () => {
         sessionStorage.removeItem("access-token");
-        this.setState({loggedIn:false});
+        this.setState({ loggedIn: false });
         this.props.history.push('/');
     }
 
@@ -83,10 +83,13 @@ class Header extends Component {
                 { this.state.loggedIn &&
                     <div>
                         <ProfileMenu imageSource={mediaData.profile_picture} profileHandler={this.profileHandler} logoutHandler={this.logoutHandler} />
-                        <div className="search-bar">
-                            <SearchIcon />
-                            <Input id="searchbox" disableUnderline={true} placeholder="Search" type="text" username={this.state.search} onChange={this.inputSearchChangeHandler} />
-                        </div>
+                        { }
+                        {this.props.searchHandler &&
+                            < div className="search-bar">
+                                <SearchIcon />
+                                <Input id="searchbox" disableUnderline={true} placeholder="Search" type="text" username={this.state.search} onChange={this.inputSearchChangeHandler} />
+                            </div>
+                        }
                     </div>
                 }
             </div>
