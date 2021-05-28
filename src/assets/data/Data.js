@@ -1,3 +1,8 @@
+
+//The API has been a problem to fix and follow
+//the following sample data uses the same format as per the API so that when the API really functions .. or if ...
+//The code can still be used and data plugged back with the API calls.
+
 export var mediaData = {
     "data": [
         {
@@ -17,7 +22,12 @@ export var mediaData = {
             "caption": "image3"
         }
     ],
-    "profile_picture": 'https://raw.githubusercontent.com/imnoor/image-viewer/master/src/assets/profile.png'
+    "profile_picture": 'https://raw.githubusercontent.com/imnoor/image-viewer/master/src/assets/profile.png',
+    "user_name": "upgrad_sde",
+    "count" : 4,
+    "full_name" : "UpGrad Education"
+
+
 };
 
 export var imagesData = { 
