@@ -78,12 +78,17 @@ class Header extends Component {
         this.setState({ loggedIn: false });
         this.props.history.push('/');
     }
+    tryGoHomeHandler = () => {
+        if (this.props.page === "Profile")
+            this.props.history.push('/home');
+
+    }
 
 
     render() {
         return (
             <div className="header-container">
-                <p className="header-text">Image Viewer</p>
+                <p className="header-text" onClick={this.tryGoHomeHandler}>Image Viewer</p>
                 { this.state.loggedIn &&
                     <div>
                         <ProfileMenu page={this.props.page} imageSource={mediaData.profile_picture} profileHandler={this.profileHandler} logoutHandler={this.logoutHandler} />
