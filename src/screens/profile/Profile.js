@@ -60,7 +60,7 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <Header searchHandler={null} {...this.props} imageSource={this.state.profilePic}/>
+                <Header searchHandler={null} {...this.props} page="Profile" imageSource={this.state.profilePic}/>
                 <div>
                     Profile Draft
                 </div>

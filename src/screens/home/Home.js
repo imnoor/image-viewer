@@ -72,7 +72,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <Header searchHandler={this.searchHandler} {...this.props} imageSource={this.state.profilePic}/>
+                <Header searchHandler={this.searchHandler} {...this.props} page="Home" imageSource={this.state.profilePic}/>
                 <div className="image-area">
                     {this.state.mediaContent.map((item, index) => {
                         let imgData = imagesData[item.id];

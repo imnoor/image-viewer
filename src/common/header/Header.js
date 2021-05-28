@@ -40,8 +40,12 @@ function ProfileMenu(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleProfile}>My Account</MenuItem>
-                <hr />
+                {props.page === "Home" &&
+                    <MenuItem onClick={handleProfile}>My Account</MenuItem>
+                }
+                {props.page === "Home" &&
+                    <hr />
+                }
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
         </div>
@@ -82,9 +86,9 @@ class Header extends Component {
                 <p className="header-text">Image Viewer</p>
                 { this.state.loggedIn &&
                     <div>
-                        <ProfileMenu imageSource={mediaData.profile_picture} profileHandler={this.profileHandler} logoutHandler={this.logoutHandler} />
+                        <ProfileMenu page={this.props.page} imageSource={mediaData.profile_picture} profileHandler={this.profileHandler} logoutHandler={this.logoutHandler} />
                         { }
-                        {this.props.searchHandler &&
+                        {this.props.page === "Home" &&
                             < div className="search-bar">
                                 <SearchIcon />
                                 <Input id="searchbox" disableUnderline={true} placeholder="Search" type="text" username={this.state.search} onChange={this.inputSearchChangeHandler} />
