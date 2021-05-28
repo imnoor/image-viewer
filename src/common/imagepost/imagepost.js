@@ -14,6 +14,7 @@ import Favorite from '@material-ui/icons/Favorite';
 
 import { Button } from '@material-ui/core';
 import { FavoriteBorder } from '@material-ui/icons';
+import { imagesData } from '../../assets/data/Data';
 
 class ImagePost extends Component {
 
@@ -21,9 +22,9 @@ class ImagePost extends Component {
         super(props);
         this.state = {
             id: this.props.imageId,
-            timeStamp: this.props.timeStamp,
-            userName: this.props.userName,
-            url: this.props.url,
+            timeStamp:imagesData[this.props.imageId].timeStamp,
+            userName: imagesData[this.props.imageId].userName,
+            url: imagesData[this.props.imageId].media_url,
             caption: this.props.caption,
             profilePic: this.props.profilePic,
             likes: 2,

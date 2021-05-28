@@ -37,8 +37,10 @@ class Profile extends Component {
             followedBy: mediaData.count,
             fullName: mediaData.full_name,
             dlgOpen: false,
+            dlgPostOpen: false,
             fullNameReqd: "dispNone",
             tmpFullName: mediaData.full_name,
+            item:{}
         }
     }
 
@@ -89,7 +91,17 @@ class Profile extends Component {
         }
     }
 
+    displayPost = (item) => {
+        //this.setState({ item:item, dlgPostOpen: true });
+        //this.setState({  dlgPostOpen: true });
+    }
+
+    dlgPostClose = () => {
+        this.setState({ dlgPostOpen: false });
+    }
+
     render() {
+        let imgData = imagesData[this.state.item.id];
         return (
             <div>
                 <Header searchHandler={null} {...this.props} page="Profile" imageSource={this.state.profilePic} />
@@ -119,17 +131,21 @@ class Profile extends Component {
                             <Button variant="contained" color="primary" onClick={this.editFullNameHandler}>UPDATE</Button>
                         </DialogContent>
                     </Dialog>
-
+                    <Dialog open={this.state.dlgPostOpen} onClose={this.dlgPostClose}>
+                        <DialogContent>
+                            <ImagePost ></ImagePost>
+                        </DialogContent>
+                    </Dialog>
                 </div>
                 <div className="gridArea">
-                <GridList cellHeight={160} className="gridList" cols={3}>
-                    {this.state.mediaContent.map((item, index) => {
-                        let imgData = imagesData[item.id];
-                        return <GridListTile key={imgData.media_url} cols={1}>
-                            <img src={imgData.media_url} alt={item.capti} />
-                        </GridListTile>
-                    })}
-                </GridList>
+                    <GridList cellHeight={160} className="gridList" cols={3}>
+                        {this.state.mediaContent.map((item, index) => {
+                            let imgData = imagesData[item.id];
+                            return <GridListTile key={imgData.media_url} cols={1} onClick={this.displayPost(item)} >
+                                <img src={imgData.media_url} alt={item.caption} />
+                            </GridListTile>
+                        })}
+                    </GridList>
                 </div>
             </div>
         )
