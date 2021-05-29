@@ -31,7 +31,7 @@ function ProfileMenu(props) {
     return (
         <div className="profile-icon">
             <IconButton onClick={handleClick} className="tinyLogo">
-                <img className="tinyLogo" src={props.imageSource} />
+                <img className="tinyLogo" src={props.imageSource} alt="" />
             </IconButton>
             <Menu
                 id="simple-menu"

@@ -40,9 +40,7 @@ class ImagePost extends Component {
     addCommentClickHandler = () => {
         if (this.state.comment !== "") {
             this.state.allComments.push(this.state.comment);
-            this.state.comment = "";
-            this.setState({ comment: "" });
-            this.setState(this.state);
+            this.setState({ comment: "", allComments : this.state.allComments });
         }
 
     }

@@ -40,7 +40,7 @@ class Profile extends Component {
             dlgPostOpen: false,
             fullNameReqd: "dispNone",
             tmpFullName: mediaData.full_name,
-            item:{}
+            item: {}
         }
     }
 
@@ -92,7 +92,7 @@ class Profile extends Component {
     }
 
     displayPost = (item) => {
-        //this.setState({ item:item, dlgPostOpen: true });
+        this.setState({ item: item, dlgPostOpen: true });
         //this.setState({  dlgPostOpen: true });
     }
 
@@ -101,12 +101,12 @@ class Profile extends Component {
     }
 
     render() {
-        let imgData = imagesData[this.state.item.id];
+        let postImage = imagesData[this.state.item.id];
         return (
             <div>
                 <Header searchHandler={null} {...this.props} page="Profile" imageSource={this.state.profilePic} />
                 <div className="profileArea">
-                    <div><img className="profileImage" src={this.state.profilePic} /></div>
+                    <div><img className="profileImage" src={this.state.profilePic} alt=""/></div>
                     <div className="profileDetails">
                         <p className="userNameText">{this.state.userName}</p>
                         <p className="userStatsText">Posts: {this.state.posts} Follows: {this.state.follows} Followed By: {this.state.followedBy}</p>
@@ -117,6 +117,7 @@ class Profile extends Component {
                         </Button></p>
 
                     </div>
+
                     <Dialog open={this.state.dlgOpen} onClose={this.dlgCloseHandler}>
                         <DialogTitle>{"Edit"}</DialogTitle>
                         <DialogContent>
@@ -131,18 +132,20 @@ class Profile extends Component {
                             <Button variant="contained" color="primary" onClick={this.editFullNameHandler}>UPDATE</Button>
                         </DialogContent>
                     </Dialog>
-                    <Dialog open={this.state.dlgPostOpen} onClose={this.dlgPostClose}>
-                        <DialogContent>
-                            <ImagePost ></ImagePost>
-                        </DialogContent>
-                    </Dialog>
+                    {this.state.dlgPostOpen &&
+                        <Dialog open={this.state.dlgPostOpen} onClose={this.dlgPostClose}>
+                            <DialogContent>
+                                <ImagePost imageId={this.state.item.id} timeStamp={postImage.timestamp} userName={postImage.username} url={postImage.media_url} caption={this.state.item.caption} profilePic={this.state.profilePic} />
+                            </DialogContent>
+                        </Dialog>
+                    }
                 </div>
                 <div className="gridArea">
                     <GridList cellHeight={160} className="gridList" cols={3}>
                         {this.state.mediaContent.map((item, index) => {
                             let imgData = imagesData[item.id];
-                            return <GridListTile key={imgData.media_url} cols={1} onClick={this.displayPost(item)} >
-                                <img src={imgData.media_url} alt={item.caption} />
+                            return <GridListTile key={imgData.media_url + index} cols={1} >
+                                <img src={imgData.media_url} alt={item.caption} onClick={() => this.displayPost(item)} />
                             </GridListTile>
                         })}
                     </GridList>
