@@ -43,7 +43,6 @@ class Login extends Component {
         if (this.state.username === USERNAME && this.state.loginPassword === PASSWORD) {
             //Login successful set the access token
             sessionStorage.setItem("access-token", ACCESSTOKEN);
-            this.state.loggedInFailed = false;
             //Route towards the home page.
             this.props.history.push('/home');
 
