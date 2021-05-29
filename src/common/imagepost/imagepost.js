@@ -100,7 +100,7 @@ class ImagePost extends Component {
                         <div className="comment-box">
                             <FormControl >
                                 <InputLabel htmlFor={"commentbox" + this.state.id}>Add a Comment</InputLabel>
-                                <Input style={{ width: "450px" }} id={"commentbox" + this.state.id} type="text" commentbox={this.state.comment} onChange={this.inputCommentChangeHandler} />
+                                <Input style={{ width: "450px" }} id={"commentbox" + this.state.id} type="text" value={this.state.comment} onChange={this.inputCommentChangeHandler} />
                             </FormControl>
                             <Button variant="contained" color="primary" onClick={this.addCommentClickHandler}>ADD</Button>
                         </div>

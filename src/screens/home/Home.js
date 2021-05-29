@@ -63,6 +63,7 @@ class Home extends Component {
             if (media.caption.toUpperCase().includes(text.toUpperCase())) {
                 return media;
             }
+            return null;
         });
         this.setState({
             mediaContent: media
